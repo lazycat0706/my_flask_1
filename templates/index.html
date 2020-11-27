@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jinja2</title>
+</head>
+<body>
+    <p>返回后端信息：{{ info }}</p>
+    <p>返回绝对值：{{ info.A | abs }}</p>
+    {% set list3 = [1,2,3,4,5,6,7,8,9] %}
+    <table style="border: 1px solid gray">
+        {% for i in list3 %}
+            <tr>
+            {% for j in list3 %}
+                {% set s = i*j %}
+                <td style="border: 1px solid gray">{{ "%s * %s = %s" | format(i,j,s)}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
