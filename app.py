@@ -27,7 +27,7 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    return "hello1, {}".format(name)
+    return "hello12, {}".format(name)
 
 
 @app.route('/debug/')
