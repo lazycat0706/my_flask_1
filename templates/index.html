@@ -2,21 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>jinja2</title>
+    <title>{{ name }}'s watchlist</title>
 </head>
 <body>
-    <p>返回后端信息：{{ info }}</p>
-    <p>返回绝对值：{{ info.A | abs }}</p>
-    {% set list3 = [1,2,3,4,5,6,7,8,9] %}
-    <table style="border: 1px solid gray">
-        {% for i in list3 %}
-            <tr>
-            {% for j in list3 %}
-                {% set s = i*j %}
-                <td style="border: 1px solid gray">{{ "%s * %s = %s" | format(i,j,s)}}</td>
-            {% endfor %}
-            </tr>
+    <h2>{{ name }}'s watchlist</h2>
+    <p>{{ movies | length }} Titles</p>
+    <ul>
+        {% for movie in movies %}
+        <li>{{ movie.title }} - {{ movie.year }}</li>
         {% endfor %}
-    </table>
+    </ul>
 </body>
 </html>
