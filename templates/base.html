@@ -11,7 +11,6 @@
 </head>
 <body>
     <h2>
-        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
         {{ user.name }}'s watchlist
     </h2>
     <nav>
@@ -19,9 +18,12 @@
             <li><a href="{{ url_for('index') }}">Home</a> </li>
         </ul>
     </nav>
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
     {% block content %}{% endblock %}
     <footer>
-        <small>&copy;2018</small>
+        <small>&copy;2020-lazycat</small>
     </footer>
 </body>
 </html>
