@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ user.name }}'s watchlist</title>
-</head>
-<body>
-    <h2>{{ user.name }}'s watchlist</h2>
-    <p>{{ movies | length }} Titles</p>
-    <ul>
-        {% for movie in movies %}
-        <li>{{ movie.title }} - {{ movie.year }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<p>{{ movies | length }} Title</p>
+<ul class="movie-list">
+    {% for movie in movies %}
+    <li>{{ movie.title }} - {{ movie.year }}
+        <span class="float-right">
+            <a class="imdb" href="https://www.imdb.com/find?q={{ movie.title }} " target="_blank" title="find this movie on imdb">IMDN</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+<img alt="walking" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}" title="to~to~ro">
+{% endblock %}
