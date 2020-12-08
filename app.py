@@ -30,29 +30,29 @@ class Movie(db.Model):
     year = db.Column(db.String(4))
 
 
-@app.cli.command()
-def forge():
-    db.create_all()
-    name = 'grey li'
-    movies = [
-        {'title': 'My Neighbor Totoro', 'year': '1988'},
-        {'title': 'Dead Poets Society', 'year': '1989'},
-        {'title': 'A Perfect World', 'year': '1993'},
-        {'title': 'Leon', 'year': '1994'},
-        {'title': 'Mahjong', 'year': '1996'},
-        {'title': 'Swallowtail Butterfly', 'year': '1996'},
-        {'title': 'King of Comedy', 'year': '1999'},
-        {'title': 'Devils on the Doorstep', 'year': '1999'},
-        {'title': 'WALL-E', 'year': '2008'},
-        {'title': 'The Pork of Music', 'year': '2012'},
-    ]
-    user = User(name=name)
-    db.session.add(user)
-    for i in movies:
-        movie = Movie(title=i['title'], year=i['year'])
-        db.session.add(movie)
-    db.session.commit()
-    click.echo('Done')
+# @app.cli.command()
+# def forge():
+#     db.create_all()
+#     name = 'grey li'
+#     movies = [
+#         {'title': 'My Neighbor Totoro', 'year': '1988'},
+#         {'title': 'Dead Poets Society', 'year': '1989'},
+#         {'title': 'A Perfect World', 'year': '1993'},
+#         {'title': 'Leon', 'year': '1994'},
+#         {'title': 'Mahjong', 'year': '1996'},
+#         {'title': 'Swallowtail Butterfly', 'year': '1996'},
+#         {'title': 'King of Comedy', 'year': '1999'},
+#         {'title': 'Devils on the Doorstep', 'year': '1999'},
+#         {'title': 'WALL-E', 'year': '2008'},
+#         {'title': 'The Pork of Music', 'year': '2012'},
+#     ]
+#     user = User(name=name)
+#     db.session.add(user)
+#     for i in movies:
+#         movie = Movie(title=i['title'], year=i['year'])
+#         db.session.add(movie)
+#     db.session.commit()
+#     click.echo('Done')
 
 
 @app.errorhandler(404)
@@ -76,6 +76,9 @@ def index():
         flash("Item created")
         print('Item created-----title: %s--year: %s' % (title, year))
         return redirect(url_for('index'))
+    page = request.args.get('/',1,type=int)
+    per_page = request.args.get('per_page', 20, type=int)
+    pagination = db.query
     movies = Movie.query.all()
     return render_template('index.html', movies=movies)
 
