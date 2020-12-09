@@ -78,7 +78,7 @@ def index():
         return redirect(url_for('index'))
     page = request.args.get('/',1,type=int)
     per_page = request.args.get('per_page', 20, type=int)
-    pagination = db.query
+    pagination = db.Q
     movies = Movie.query.all()
     return render_template('index.html', movies=movies)
 
